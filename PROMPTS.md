@@ -1,14 +1,5 @@
-# Prompt log — React Lab 2
-
-Part of what you submit. It shows *how* you used AI: did you hand it the contract and the
-rules, or type "make it work"? Fill it in **as you go**, not from memory at the end.
-
-- Name and roll number:
-- AI tool and plan (e.g. ChatGPT free, Gemini, Claude free, Copilot):
-
-**Log every prompt you send, in order — including the ones that didn't help.** Paste each
-prompt in full. One exception: if you pasted CONTRACT.md's prompt 1 unchanged, write
-"CONTRACT.md prompt 1, unchanged". Summarise each reply; don't paste whole files.
+- Name and roll number: **Girish Chougule**, MT2026028
+- AI tool and plan: Claude (Free plan)
 
 ---
 
@@ -17,39 +8,31 @@ prompt in full. One exception: if you pasted CONTRACT.md's prompt 1 unchanged, w
 **Sent:**
 
 ```text
-CONTRACT.md prompt 1, unchanged
-```
-
-**What came back:** (which files; which hooks it used; anything from the "not yet" list;
-anything it did that the contract didn't ask for)
-
-**Did it run?** (`npm run dev`: list loads? add works? 409 shown? fieldErrors shown?
-`npm test`: __ passed / __ failed)
-
-**What I did with it:**
-
----
-
-## Prompt 2 —
-
-**Why I sent it:** (for a fix prompt: which decision in AUDIT.md it carries out)
-
-**Sent:**
-
-```text
-
+The whole of CONTRACT.md, pasted as one message: the prompt 1 block AND §4
+(the shape the tests check). Not "prompt 1, unchanged": I included §4 by mistake.
+It was sent in an existing chat, not a new one. Follow-up message: "Do it for me."
 ```
 
 **What came back:**
 
-**What I kept, and what I rejected:**
+Four files in `src/courses/`: `useCourses.js` (hook: three useState, one useEffect with [] and an ignore-flag cleanup, addCourse), `CoursesView.jsx` (no hooks, only renders), `AddCourseForm.jsx` (three useState: form object, submitting, error), `CoursesPage.jsx` (calls useCourses, renders the heading, the View and the form).
+
+Hooks used: only useState and useEffect. Nothing from the "not yet" list.
+
+Not asked for by the contract: a FIELDS array that builds five of the inputs with .map, and a small seatsText() helper in the View.
+
+**Did it run?**
+
+`npm run dev`: list loads (20 courses, in code order); valid add appears in order and the form clears: **Yes**; 409 message shown: **Yes**; fieldErrors shown under the inputs: **Yes**. `npm test`: 62 passed / 0 failed.
+
+**What I did with it:**
+
+Replaced the four placeholders in `src/courses/` with these files, ran the tests and the browser checks, committed it unchanged, then audited it in `AUDIT.md`.
 
 ---
 
-<!-- Copy the "Prompt 2" block for each further prompt. -->
-
 ## Afterwards
 
-- How many prompts did the whole feature take?
-- Which of your prompts would you write differently now, and how?
-- One thing the rules in prompt 1 prevented (or failed to prevent):
+- **How many prompts did the whole feature take?** One generate prompt; no fix prompt was needed because the first version already matched §4.
+- **Which of your prompts would you write differently now, and how?** I should have followed the instructions more carefully by copying only the Prompt 1 block into a new chat. I accidentally included §4 and used an existing chat, so the AI already knew the expected final structure. This meant I did not get a genuine first draft to audit.
+- **One thing the rules in Prompt 1 prevented (or failed to prevent):** The restriction to `useState` and `useEffect` prevented the AI from using unnecessary hooks such as `useMemo`, `useCallback`, and `useRef`. However, it did not prevent the AI from introducing extra abstractions, such as the `FIELDS` array and `seatsText()` helper, which I still needed to evaluate during the audit.
